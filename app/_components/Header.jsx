@@ -1,4 +1,6 @@
+"use client"
 import { Button } from "@/components/ui/button";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 
 const Header = () => {
@@ -13,7 +15,7 @@ const Header = () => {
         </div>
       </div>
       <div>
-        <Button>Get Started</Button>
+        <Button >Login/Sign Up</Button>
       </div>
     </div>
   );
