@@ -1,6 +1,8 @@
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/Header";
+import { Toaster } from "sonner";
+
 
 
 const outfit = Outfit({ subsets: ["latin"] });
@@ -17,6 +19,7 @@ export default function RootLayout({ children }) {
        
           <div className="mx-6 md:mx-16">
             <Header />
+            <Toaster />
             {children}
           </div>
        

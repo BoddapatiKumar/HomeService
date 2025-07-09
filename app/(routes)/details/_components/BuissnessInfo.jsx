@@ -36,8 +36,14 @@ const BuissnessInfo = ({ buisness }) => {
           <Button className="bg-violet-700 hover:bg-violet-700">
             <Share />
           </Button>
-          <h2 className="flex gap-2 text-xl text-violet-700"><User />{buisness?.contactPerson}</h2>
-          <h2 className="flex gap-2 text-xl text-gray-500"><Clock />Available between 8:00 AM to 10:00 PM</h2>
+          <h2 className="flex gap-2 text-xl text-violet-700">
+            <User />
+            {buisness?.contactPerson}
+          </h2>
+          <h2 className="flex gap-2 text-xl text-gray-500">
+            <Clock />
+            Available between 8:00 AM to 10:00 PM
+          </h2>
         </div>
       </div>
     </div>

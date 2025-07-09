@@ -48,10 +48,12 @@ const getAllBuisnessLists = async () => {
 };
 
 const getBuisnessListByCategory = async (category) => {
-
-  const query = gql`
+  const query =
+    gql`
     query ListByCategory {
-      buisnessLists(where: { category: { name: "`+category+`" } }) {
+      buisnessLists(where: { category: { name: "` +
+    category +
+    `" } }) {
         about
         address
         category {
@@ -72,9 +74,12 @@ const getBuisnessListByCategory = async (category) => {
   return result;
 };
 
-const getBuisnessById=async(id)=>{
-  const query=gql`query BuisnessById {
-  buisnessList(where: {id: "`+id+`"}) {
+const getBuisnessById = async (id) => {
+  const query =
+    gql`query BuisnessById {
+  buisnessList(where: {id: "` +
+    id +
+    `"}) {
     about
     address
     category {
@@ -88,8 +93,35 @@ const getBuisnessById=async(id)=>{
     }
     name
   }
-}`
+}`;
   const result = await request(MASTER_URL, query);
   return result;
-}
-export default { getCategory, getAllBuisnessLists,getBuisnessListByCategory,getBuisnessById };
+};
+
+const createNewBooking = async (buisnessId,date,time,email,name) => {
+  const mutationQuery = gql`
+    mutation CreateBooking {
+      createBooking(
+        data: {
+          bookingStatus: booked
+          buisnessList: { connect: { BuisnessList: { id: "`+buisnessId+`" } } }
+          date: "`+date+`"
+          time: "`+time+`"
+          userEmail: "`+email+`"
+          userName: "`+name+`"
+        }
+      ) {
+        id
+      }
+    }
+  `;
+  const result = await request(MASTER_URL, mutationQuery);
+  return result;
+};
+export default {
+  getCategory,
+  getAllBuisnessLists,
+  getBuisnessListByCategory,
+  getBuisnessById,
+  createNewBooking,
+};
