@@ -118,10 +118,36 @@ const createNewBooking = async (buisnessId,date,time,email,name) => {
   const result = await request(MASTER_URL, mutationQuery);
   return result;
 };
+
+const getUserBookingHistory = async (email) => {
+
+  const query =gql`query GetUserBookingHistory {
+  bookings(where: {userEmail: "`+email+`"}) {
+    buisnessList {
+      ... on BuisnessList {
+        id
+        email
+        images {
+          url
+        }
+        name
+        contactPerson
+        address
+      }
+    }
+    date
+    time
+  }
+}`;
+  const result = await request(MASTER_URL, query);
+  return result;
+};
+
 export default {
   getCategory,
   getAllBuisnessLists,
   getBuisnessListByCategory,
   getBuisnessById,
   createNewBooking,
+  getUserBookingHistory
 };

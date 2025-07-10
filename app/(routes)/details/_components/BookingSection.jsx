@@ -14,6 +14,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import GlobalApi from "@/app/_services/GlobalApi";
 import { toast } from "sonner";
+import moment from "moment";
 
 const BookingSection = ({ children, buisness }) => {
   const [date, setDate] = useState(new Date());
@@ -49,7 +50,7 @@ const BookingSection = ({ children, buisness }) => {
   const saveBooking = () => {
     GlobalApi.createNewBooking(
       buisness.id,
-      date,
+      moment(date).format('DD-MMM-yyyy'),
       selectedTime,
       "Kumar@gmail.com",
       "Kumar"

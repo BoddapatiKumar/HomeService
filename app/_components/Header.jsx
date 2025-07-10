@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -15,7 +16,7 @@ const Header = () => {
         </div>
       </div>
       <div>
-        <Button >Get Started</Button>
+        <Link href={'/mybookings'}><Button className="cursor-pointer">My Bookings</Button></Link>
       </div>
     </div>
   );
